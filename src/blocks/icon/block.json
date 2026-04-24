@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "lumo-wp-plugin/icon",
+	"version": "0.1.0",
+	"title": "icon",
+	"category": "design",
+	"icon": "smiley",
+	"description": "Show icon on your website.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+		"iconName": {
+			"type": "string",
+			"default": "check"
+		},
+		"customIconUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"customIconId": {
+			"type": "number"
+		},
+		"useCustomIcon": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"textdomain": "icon",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}
