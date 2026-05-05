@@ -32,7 +32,7 @@ import './editor.scss';
 export default function Edit() {
 	return (
 		<p { ...useBlockProps() }>
-			{ __( 'Categories with all – hello from the editor!', 'categories-with-all' ) }
+			{ __( 'Category with all – hello from the editor!', 'category-with-all' ) }
 		</p>
 	);
 }
