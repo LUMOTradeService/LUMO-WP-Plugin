@@ -21,5 +21,5 @@
  */
  
 /* eslint-disable no-console */
-console.log("Hello World! (from lumo-wp-plugin-categories-with-all block)");
+console.log("Hello World! (from lumo-wp-plugin-category-with-all block)");
 /* eslint-enable no-console */
