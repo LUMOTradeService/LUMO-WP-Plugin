@@ -11,7 +11,8 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, InnerBlocks, InspectorControls } from '@wordpress/block-editor';
+import { useState } from '@wordpress/element';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -29,10 +30,28 @@ import './editor.scss';
  *
  * @return {Element} Element to render.
  */
-export default function Edit() {
-	return (
-		<p { ...useBlockProps() }>
-			{ __( 'Tabs – hello from the editor!', 'tabs' ) }
-		</p>
-	);
+export default function Edit( { attributes, setAttributes } ) {
+    const [ activeTab, setActiveTab ] = useState( 0 );
+    const blockProps = useBlockProps();
+
+    const TEMPLATE = [
+        [ 'lumo-wp-plugin/tab-item', { title: 'Tab 1' } ],
+        [ 'lumo-wp-plugin/tab-item', { title: 'Tab 2' } ],
+    ];
+
+    return (
+        <div { ...blockProps } className="lumo-tabs-admin">
+            <div className="lumo-tabs-header" style={{ display: 'flex', gap: '10px', marginBottom: '15px' }}>
+                <p><small>{ __( 'Configure tabs in the canvas below:', 'lumo-wp-plugin' ) }</small></p>
+            </div>
+            
+            <div className="lumo-tabs-content">
+                <InnerBlocks 
+                    allowedBlocks={ [ 'lumo-wp-plugin/tab-item' ] }
+                    template={ TEMPLATE }
+                    orientation="horizontal"
+                />
+            </div>
+        </div>
+    );
 }

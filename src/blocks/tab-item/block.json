@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "lumo-wp-plugin/tab-item",
+	"version": "0.1.0",
+	"title": "Tab item",
+	"category": "theme",
+	"icon": "table-row-after",
+	"description": "Show tab headline and its content.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "tab-item",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}
