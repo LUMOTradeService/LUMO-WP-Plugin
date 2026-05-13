@@ -5,11 +5,34 @@
 	"version": "0.1.0",
 	"title": "Tab item",
 	"category": "theme",
-	"icon": "table-row-after",
-	"description": "Show tab headline and its content.",
+	"icon": "excerpt-view",
+	"description": "A single tab panel with a title and block content.",
+	"keywords": [
+		"tab",
+		"panel",
+		"item"
+	],
+	"parent": [
+		"lumo-wp-plugin/tabs"
+	],
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": ""
+		}
+	},
 	"example": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"reusable": false,
+		"lock": false,
+		"color": {
+			"background": true,
+			"text": true
+		},
+		"spacing": {
+			"padding": true
+		}
 	},
 	"textdomain": "tab-item",
 	"editorScript": "file:./index.js",

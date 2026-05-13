@@ -4,7 +4,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 
 /**
  * The save function defines the way in which the different attributes should
@@ -16,9 +16,15 @@ import { useBlockProps } from '@wordpress/block-editor';
  * @return {Element} Element to render.
  */
 export default function save() {
+	const blockProps = useBlockProps.save( {
+		className: 'lumo-tab-item',
+	} );
+ 
 	return (
-		<p { ...useBlockProps.save() }>
-			{ 'Tab item – hello from the saved content!' }
-		</p>
+		<div { ...blockProps }>
+			<div className="lumo-tab-item__content">
+				<InnerBlocks.Content />
+			</div>
+		</div>
 	);
 }

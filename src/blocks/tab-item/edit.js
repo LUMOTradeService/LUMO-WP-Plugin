@@ -11,7 +11,7 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, InnerBlocks, RichText } from '@wordpress/block-editor';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -29,10 +29,41 @@ import './editor.scss';
  *
  * @return {Element} Element to render.
  */
-export default function Edit() {
+export default function Edit( { attributes, setAttributes, isSelected } ) {
+	const { title } = attributes;
+ 
+	const blockProps = useBlockProps( {
+		className: 'lumo-tab-item',
+	} );
+ 
 	return (
-		<p { ...useBlockProps() }>
-			{ __( 'Tab item – hello from the editor!', 'tab-item' ) }
-		</p>
+		<div { ...blockProps }>
+			{/* ── Tab title (synced to parent nav bar) ─────────────────────── */}
+			<div className="lumo-tab-item__header">
+				<RichText
+					tagName="span"
+					className="lumo-tab-item__title"
+					value={ title }
+					onChange={ ( value ) => setAttributes( { title: value } ) }
+					placeholder={ __( 'Tab title…', 'lumo-wp-plugin' ) }
+					allowedFormats={ [] }           // plain text only
+					withoutInteractiveFormatting    // no toolbar
+				/>
+			</div>
+
+			<hr class="wp-block-separator has-alpha-channel-opacity"></hr>
+ 
+			{/* ── Tab content (any blocks) ──────────────────────────────────── */}
+			<div className="lumo-tab-item__content">
+				<InnerBlocks
+					templateLock={ false }
+					renderAppender={
+						isSelected
+							? InnerBlocks.ButtonBlockAppender
+							: false
+					}
+				/>
+			</div>
+		</div>
 	);
 }

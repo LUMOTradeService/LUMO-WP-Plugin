@@ -6,10 +6,37 @@
 	"title": "Tabs",
 	"category": "design",
 	"icon": "table-row-after",
-	"description": "organize content by separating it into different panes",
+	"description": "Organize content by separating it into different panes.",
+	"keywords": [
+		"tabs",
+		"tab",
+		"tabbed",
+		"panel"
+	],
+	"attributes": {
+		"tabTitles": {
+			"type": "array",
+			"default": [],
+			"items": {
+				"type": "string"
+			}
+		},
+		"showSeparator": {
+			"type": "boolean",
+			"default": true
+		}
+	},
 	"example": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"color": {
+			"background": true,
+			"text": true
+		},
+		"spacing": {
+			"padding": true,
+			"margin": true
+		}
 	},
 	"textdomain": "tabs",
 	"editorScript": "file:./index.js",

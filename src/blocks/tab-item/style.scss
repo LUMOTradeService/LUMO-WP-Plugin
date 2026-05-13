@@ -6,7 +6,21 @@
  */
 
 .wp-block-lumo-wp-plugin-tab-item {
-	background-color: #21759b;
-	color: #fff;
-	padding: 2px;
+	&.lumo-tab-item {
+		display: none;
+		grid-area: 1 / 1;
+		opacity: 0;
+		transition: opacity 200ms ease, display 200ms ease allow-discrete;
+
+		&.current-tab {
+			display: block;
+			opacity: 1;
+		}
+
+		@starting-style {
+			&.current-tab {
+				opacity: 0;
+			}
+		}
+	}
 }

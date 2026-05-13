@@ -5,5 +5,18 @@
  */
 
 .wp-block-lumo-wp-plugin-tab-item {
-	border: 1px dotted #f00;
+	&.lumo-tab-item {
+        position: relative;
+		display: block;
+        opacity: 1;
+	}
+
+    .lumo-tab-item__header {
+        padding-top: var(--wp--preset--spacing--extra-large);
+        margin-block: var(--wp--preset--spacing--small);
+    }
+
+    .lumo-tab-item__content {
+        margin-block: var(--wp--preset--spacing--extra-large);
+    }
 }
