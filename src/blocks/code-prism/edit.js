@@ -1,38 +1,81 @@
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
- */
 import { __ } from '@wordpress/i18n';
-
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
-import { useBlockProps } from '@wordpress/block-editor';
-
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
+import { useBlockProps, RichText, InspectorControls, BlockControls } from '@wordpress/block-editor';
+import { PanelBody, SelectControl, ToolbarDropdownMenu } from '@wordpress/components';
+import { useMemo, useEffect, useRef } from '@wordpress/element';
+import Prism from './prism.js'; // Import your custom Prism file
 import './editor.scss';
 
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
- * @return {Element} Element to render.
- */
-export default function Edit() {
+export default function Edit({ attributes, setAttributes, isSelected }) {
+	const { content, language } = attributes;
+	const blockProps = useBlockProps();
+	const previewRef = useRef();
+
+	// Auto-focus textarea when block becomes selected.
+	useEffect(() => {
+        if (!isSelected && previewRef.current) {
+            Prism.highlightElement(previewRef.current);
+        }
+    }, [isSelected, content, language]);
+
+	// 1. Extract languages dynamically from Prism.js
+	// Prism.languages contains grammar objects. We filter out prototype/helper methods.
+	const languageOptions = Object.keys(Prism.languages)
+		.filter((key) => typeof Prism.languages[key] === 'object' && !Array.isArray(Prism.languages[key]))
+		.map((lang) => ({
+			label: lang.toUpperCase(), // e.g., "JAVASCRIPT", "JSON"
+			value: lang,
+		}));
+
+	// 2. Map options for the ToolbarDropdownMenu
+	const toolbarControls = languageOptions.map((option) => ({
+		title: option.label,
+		isActive: language === option.value,
+		onClick: () => setAttributes({ language: option.value }),
+	}));
+
 	return (
-		<p { ...useBlockProps() }>
-			{ __( 'Code prism – hello from the editor!', 'code-prism' ) }
-		</p>
+		<div {...blockProps}>
+			{/* Toolbar Dropdown */}
+			<BlockControls>
+				<ToolbarDropdownMenu
+					icon="editor-code"
+					label={__('Select Language', 'your-textdomain')}
+					controls={toolbarControls}
+				/>
+			</BlockControls>
+
+			{/* Sidebar Dropdown */}
+			<InspectorControls>
+				<PanelBody title={__('Code Settings', 'your-textdomain')}>
+					<SelectControl
+						label={__('Language', 'your-textdomain')}
+						value={language}
+						options={languageOptions}
+						onChange={(newLang) => setAttributes({ language: newLang })}
+					/>
+				</PanelBody>
+			</InspectorControls>
+
+			{isSelected ? (
+
+				<pre className={`language-${language}`}>
+					<RichText
+						tagName="code"
+						className={`language-${language}`}
+						value={content}
+						onChange={(newContent) => setAttributes({ content: newContent })}
+						placeholder={__('Write your code here...', 'lumo-wp-plugin')}
+						preserveWhiteSpace={true}
+						allowedFormats={[]} // Prevent bold/italic inside code
+					/>
+				</pre>
+			) : (
+				<pre className={`language-${language}`}>
+                    <code ref={ previewRef } className={`language-${language}`}>
+                        { content }
+                    </code>
+                </pre>
+			)}
+		</div >
 	);
 }

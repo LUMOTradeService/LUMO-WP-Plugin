@@ -1,12 +1,204 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
-
 .wp-block-lumo-wp-plugin-code-prism {
-	background-color: #21759b;
-	color: #fff;
-	padding: 2px;
+
+	code[class*="language-"],
+	pre[class*="language-"] {
+		color: var(--wp--preset--color--on-surface);
+		background: none;
+		font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+		text-align: left;
+		white-space: pre;
+		word-spacing: normal;
+		word-break: normal;
+		word-wrap: normal;
+		line-height: 1.5;
+
+		-moz-tab-size: 4;
+		-o-tab-size: 4;
+		tab-size: 4;
+
+		-webkit-hyphens: none;
+		-moz-hyphens: none;
+		-ms-hyphens: none;
+		hyphens: none;
+	}
+
+	/* Code blocks */
+	pre[class*="language-"] {
+		padding: var(--wp--preset--spacing--large);
+		margin: 0px;
+		overflow: auto;
+		border-radius: var(--wp--preset--border-radius--small);
+	}
+
+	:not(pre)>code[class*="language-"],
+	pre[class*="language-"] {
+		background: var(--wp--preset--color--surface-container);
+	}
+
+	/* Inline code */
+	:not(pre)>code[class*="language-"] {
+		padding: var(--wp--preset--spacing--large);
+		border-radius: var(--wp--preset--border-radius--large);
+		white-space: normal;
+	}
+
+	.token.comment,
+	.token.prolog,
+	.token.doctype,
+	.token.cdata {
+		color: var(--wp--preset--color--on-surface-variant);
+	}
+
+	.token.punctuation {
+		color: var(--wp--preset--color--on-surface);
+	}
+
+	.token.namespace {
+		color: var(--wp--preset--color--on-surface-variant);
+	}
+
+	.token.property,
+	.token.tag,
+	.token.constant,
+	.token.symbol,
+	.token.deleted {
+		color: var(--wp--preset--color--primary);
+	}
+
+	.token.boolean,
+	.token.number {
+		color: var(--wp--preset--color--on-tertiary-container);
+	}
+
+	.token.selector,
+	.token.attr-name,
+	.token.string,
+	.token.char,
+	.token.builtin,
+	.token.inserted {
+		color: var(--wp--preset--color--tertiary);
+	}
+
+	.token.operator,
+	.token.entity,
+	.token.url,
+	.language-css .token.string,
+	.style .token.string,
+	.token.variable {
+		color: var(--wp--preset--color--on-surface);
+	}
+
+	.token.atrule,
+	.token.attr-value,
+	.token.function,
+	.token.class-name {
+		color: var(--wp--preset--color--on-primary-container);
+	}
+
+	.token.keyword {
+		color: var(--wp--preset--color--primary);
+	}
+
+	.token.regex,
+	.token.important {
+		color: var(--wp--preset--color--primary);
+	}
+
+	.token.important,
+	.token.bold {
+		font-weight: bold;
+	}
+
+	.token.italic {
+		font-style: italic;
+	}
+
+	.token.entity {
+		cursor: help;
+	}
+
+	div.code-toolbar {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: var(--wp--preset--spacing--extra-extra-small);
+		border-radius: var(--wp--preset--border-radius--extra-large);
+		overflow: hidden;
+	}
+
+	div.code-toolbar>.toolbar {
+		display: flex;
+		flex-direction: row;
+		justify-content: end;
+		padding: var(--wp--preset--spacing--normal);
+		border-radius: var(--wp--preset--border-radius--small);
+		gap: var(--wp--preset--spacing--extra-small);
+		background: var(--wp--preset--color--surface-container);
+		top: var(--wp--preset--spacing--normal);
+		right: var(--wp--preset--spacing--normal);
+		transition: opacity 200ms ease-in-out;
+	}
+
+	div.code-toolbar>.toolbar>.toolbar-item {
+		span {
+			display: block;
+		}
+	}
+
+	div.code-toolbar>.toolbar>.toolbar-item>a {
+		cursor: pointer;
+	}
+
+	div.code-toolbar>.toolbar>.toolbar-item>button,
+	div.code-toolbar>.toolbar>.toolbar-item>a {
+		position: relative;
+		display: flex;
+		background: var(--wp--preset--color--secondary);
+		color: var(--wp--preset--color--on-secondary);
+		border: 0;
+		font: inherit;
+		text-decoration: none;
+		overflow: visible;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		transition: opacity 200ms;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 0;
+			width: 100%;
+			min-height: var(--wp--preset--spacing--extra-extra-large);
+			transform: translateY(-50%);
+		}
+
+		&[download] {
+			background: var(--wp--preset--color--primary);
+			color: var(--wp--preset--color--on-primary);
+		}
+	}
+
+	div.code-toolbar>.toolbar>.toolbar-item>a,
+	div.code-toolbar>.toolbar>.toolbar-item>button,
+	div.code-toolbar>.toolbar>.toolbar-item>span {
+		line-height: 0;
+		font-size: var(--wp--preset--font-size--label-large);
+		padding: var(--wp--preset--spacing--large) var(--wp--preset--spacing--normal);
+		border-radius: var(--wp--preset--border-radius--full);
+	}
+
+	div.code-toolbar>.toolbar>.toolbar-item>a:hover,
+	div.code-toolbar>.toolbar>.toolbar-item>a:focus,
+	div.code-toolbar>.toolbar>.toolbar-item>button:hover,
+	div.code-toolbar>.toolbar>.toolbar-item>button:focus {
+		opacity: 0.8;
+		text-decoration: none;
+	}
+
+	div.code-toolbar>.toolbar>.toolbar-item>a:active,
+	div.code-toolbar>.toolbar>.toolbar-item>button:active {
+		opacity: 0.6;
+	}
 }
