@@ -6,14 +6,31 @@
 	"title": "Code prism",
 	"category": "text",
 	"icon": "editor-code",
+	"attributes": {
+		"content": {
+			"type": "string"
+		},
+		"language": {
+			"type": "string",
+			"default": "javascript"
+		}
+	},
 	"description": "Show code examples on your website.",
 	"example": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"typography": true,
+		"color": {
+			"text": true,
+			"background": true
+		}
 	},
 	"textdomain": "code-prism",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
-	"viewScript": "file:./view.js"
+	"viewScript": [
+		"file:./prism.js",
+		"file:./view.js"
+	]
 }
