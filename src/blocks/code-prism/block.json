@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "lumo-wp-plugin/code-prism",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"title": "Code prism",
 	"category": "text",
 	"icon": "editor-code",
@@ -18,12 +18,7 @@
 	"description": "Show code examples on your website.",
 	"example": {},
 	"supports": {
-		"html": false,
-		"typography": true,
-		"color": {
-			"text": true,
-			"background": true
-		}
+		"html": false
 	},
 	"textdomain": "code-prism",
 	"editorScript": "file:./index.js",

@@ -2,9 +2,9 @@
 
 /**
  * Plugin Name:       LUMO WP Plugin
- * Plugin URI:		  https://lumopos.com/WordPress/lumo-wp-plugin
- * Description:       Custom block and pattern used in lumo trade service websites.
- * Version:           0.1.0
+ * Plugin URI:		  https://lumopos.com/wordpress/lumo-wp-plugin
+ * Description:       Custom blocks and patterns used in lumo trade service websites.
+ * Version:           1.0.0
  * Requires at least: 6.8
  * Requires PHP:      7.4
  * Author:            LUMO trade service
@@ -19,6 +19,7 @@
 if (! defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
+
 /**
  * Registers the block(s) metadata from the `blocks-manifest.php` and registers the block type(s)
  * based on the registered block metadata. Behind the scenes, it registers also all assets so they can be enqueued
