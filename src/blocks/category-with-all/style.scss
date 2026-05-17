@@ -4,3 +4,80 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+
+.wp-block-categories-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wp--preset--spacing--extra-extra-small);
+    list-style-type: none;
+    padding: 0px;
+    border-radius: var(--wp--preset--border-radius--large-increased);
+    justify-content: center;
+    flex: 1;
+
+    & .cat-item {
+        flex: 1;
+        list-style-type: none;
+    }
+
+    & .cat-item a {
+        position: relative;
+        display: flex;
+        min-height: var(--wp--custom--small-height);
+        border-radius: var(--wp--preset--border-radius--small);
+        padding: 0px var(--wp--preset--spacing--large);
+        background-color: var(--wp--preset--color--secondary);
+        align-items: center;
+        justify-content: center;
+        color: var(--wp--preset--color--on-secondary);
+        text-decoration: none;
+        line-height: 1;
+        white-space: nowrap;
+        transition: opacity var(--wp--custom--transition-normal);
+    }
+
+    & .cat-item a::after {
+        position: absolute;
+        content: "";
+        width: 100%;
+        min-height: var(--wp--custom--medium-height);
+    }
+
+    & .cat-item a:hover {
+        opacity: 0.8;
+    }
+
+    & .cat-item a:active {
+        opacity: 0.6;
+    }
+
+    &>.cat-item.current-cat>a,
+    >.current-cat-ancestor>a {
+        color: var(--wp--preset--color--on-secondary-container);
+        background-color: var(--wp--preset--color--secondary-container);
+        border-radius: var(--wp--preset--border-radius--full);
+    }
+
+    &:has(.children) {
+        flex-direction: column;
+    }
+
+    & .children {
+        display: flex;
+        flex-direction: column;
+        margin-top: var(--wp--preset--spacing--extra-extra-small);
+        gap: var(--wp--preset--spacing--extra-extra-small);
+    }
+
+    &:has(.children) .cat-item a {
+        color: var(--wp--preset--color--on-surface);
+        background-color: var(--wp--preset--color--surface-container);
+        border-radius: var(--wp--preset--border-radius--full);
+        min-height: var(--wp--custom--medium-height);
+    }
+
+    &:has(.children) .cat-item.current-cat>a {
+        color: var(--wp--preset--color--on-secondary-container);
+        background-color: var(--wp--preset--color--secondary-container);
+    }
+}
