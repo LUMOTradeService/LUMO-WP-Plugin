@@ -10,7 +10,19 @@ jobs:
     steps:
     - name: Get latest code
       uses: actions/checkout@v6
-    
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '24'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build Gutenberg blocks
+      run: npm run build
+      
     - name: Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.4.0
       with:
@@ -18,6 +30,10 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         exclude: |
+          **/node_modules/**
           **/.git*
           **/.git*/**
+          README.md
+          package.json
+          package-lock.json
           **/src
