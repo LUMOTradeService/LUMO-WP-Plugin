@@ -15,4 +15,5 @@ jobs:
     steps:
       - uses: alleyinteractive/action-release@develop
         with:
+          build-command: 'npm install npm run build'
           use-changelog-notes: 'false'
