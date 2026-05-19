@@ -4,11 +4,11 @@ Collection of gutenberg blocks and patterns.
 
 ## Included Blocks & Patterns
 
-- Tabs (`tabs`)
-- Tab item (`tab-item`)
-- Icon (`icon`)
-- Code / Prism (`code-prism`)
-- Category with all (`category-with-all`)
+- Tabs (`tabs`): Accessible, keyboard-navigable tab container used to group related content into tabbed panels. Works together with one or more `tab-item` blocks.
+- Tab item (`tab-item`): An individual tab panel that lives inside a `tabs` block; holds the content displayed when its tab is active.
+- Icon (`icon`): Select and insert SVG icons from the bundled icon set (assets/icons/48px). Outputs an inline SVG with an editable label.
+- Code / Prism (`code-prism`): Syntax-highlighted code block powered by Prism.js; includes language classes and client-side features (copy/download toolbar, language label).
+- Category with all (`category-with-all`): Server-rendered block/pattern that lists post categories plus an "All" link; highlights the current category when on category/archive views.
 
 ## Requirements
 
