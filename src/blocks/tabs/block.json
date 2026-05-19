@@ -1,0 +1,46 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "lumo-wp-plugin/tabs",
+	"version": "1.0.0",
+	"title": "Tabs",
+	"category": "design",
+	"icon": "table-row-after",
+	"description": "Organize content by separating it into different panes.",
+	"keywords": [
+		"tabs",
+		"tab",
+		"tabbed",
+		"panel"
+	],
+	"attributes": {
+		"tabTitles": {
+			"type": "array",
+			"default": [],
+			"items": {
+				"type": "string"
+			}
+		},
+		"showSeparator": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"example": {},
+	"supports": {
+		"html": false,
+		"color": {
+			"background": true,
+			"text": true
+		},
+		"spacing": {
+			"padding": true,
+			"margin": true
+		}
+	},
+	"textdomain": "tabs",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

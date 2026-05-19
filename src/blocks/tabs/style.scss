@@ -1,0 +1,84 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-lumo-wp-plugin-tabs {
+	display: flex;
+	flex-direction: column;
+
+	.lumo-tabs__nav {
+		padding: 0px;
+		margin: 0px;
+		display: flex;
+		flex-direction: row;
+		gap: var(--wp--preset--spacing--small);
+		list-style: none;
+
+		.lumo-tabs__nav-item {
+			position: relative;
+			width: fit-content;
+			min-width: var(--wp--preset--spacing--extra-extra-large);
+			min-height: var(--wp--preset--spacing--extra-extra-large);
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			transition: color 200ms, background-color 200ms;
+
+			&.current-tab {
+				color: var(--wp--preset--color--primary);
+
+				&::after {
+					background-color: var(--wp--preset--color--primary);
+				}
+			}
+
+			.lumo-tabs__nav-item-content {
+				padding: var(--wp--preset--spacing--small) var(--wp--preset--spacing--large);
+				border-radius: var(--wp--preset--spacing--large);
+				line-height: 1;
+				transition: color 200ms, background-color 200ms;
+
+
+			}
+
+			&:hover {
+				.lumo-tabs__nav-item-content {
+					color: var(--wp--preset--color--primary);
+				}
+			}
+
+			&:active {
+				.lumo-tabs__nav-item-content {
+					background-color: var(--wp--preset--color--surface-container);
+				}
+			}
+
+			&::after {
+				position: absolute;
+				content: '';
+				margin-inline: 2px;
+				left: calc(var(--wp--preset--spacing--large) + 2px);
+				right: calc(var(--wp--preset--spacing--large) + 2px);
+				bottom: 0;
+				height: 3px;
+				border-radius: 3px 3px 0px 0px;
+				background-color: transparent;
+				transition: background-color 200ms;
+			}
+		}
+	}
+
+	.wp-block-separator {
+		margin: 0px;
+	}
+
+	.lumo-tabs__panels {
+		display: grid;
+		transition: height 200ms ease;
+		margin-top: var(--wp--preset--spacing--large);
+	}
+}

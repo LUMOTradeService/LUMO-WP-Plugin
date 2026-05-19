@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "lumo-wp-plugin/tab-item",
+	"version": "1.0.0",
+	"title": "Tab item",
+	"category": "theme",
+	"icon": "excerpt-view",
+	"description": "A single tab panel with a title and block content.",
+	"keywords": [
+		"tab",
+		"panel",
+		"item"
+	],
+	"parent": [
+		"lumo-wp-plugin/tabs"
+	],
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"example": {},
+	"supports": {
+		"html": false,
+		"reusable": false,
+		"lock": false,
+		"color": {
+			"background": true,
+			"text": true
+		},
+		"spacing": {
+			"padding": true
+		}
+	},
+	"textdomain": "tab-item",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}
