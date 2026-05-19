@@ -10,8 +10,7 @@ export default function save({ attributes }) {
                 2. The data-download-link attribute enables the download plugin.
             */}
             <pre 
-                className={`language-${language}`} data-src={`lumo-code-${language}.${language}`}
-                data-download-link
+                className={`language-${language}`}
             >
                 <code className={`language-${language}`}>
                     { content }
