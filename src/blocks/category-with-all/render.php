@@ -39,7 +39,16 @@ $is_all_active = ( is_home() || is_front_page() ) && !is_category();
     </li>	
     <?php foreach ( $categories as $category ) : 
 		$is_active = ( $current_cat_id === $category->term_id );
-        $active_class = $is_active ? 'current-cat' : '';
+        
+        $is_ancestor = false;
+        if ( $current_cat_id && ! $is_active ) {
+            $ancestors = get_ancestors( $current_cat_id, 'category' );
+            if ( in_array( $category->term_id, $ancestors ) ) {
+                $is_ancestor = true;
+            }
+        }
+
+        $active_class = $is_active ? 'current-cat' : ( $is_ancestor ? 'current-cat-ancestor' : '' );
 	?>
     <li class="cat-item cat-item-<?php echo esc_attr( $category->term_id ); ?> <?php echo $active_class; ?>">
         <a href="<?php echo esc_url( get_category_link( $category->term_id ) ); ?>">
