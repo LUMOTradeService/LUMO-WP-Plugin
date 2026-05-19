@@ -146,7 +146,6 @@
 	}
 
 	div.code-toolbar>.toolbar>.toolbar-item>a {
-		cursor: pointer;
 	}
 
 	div.code-toolbar>.toolbar>.toolbar-item>button,
@@ -162,6 +161,7 @@
 		-webkit-user-select: none;
 		-moz-user-select: none;
 		-ms-user-select: none;
+		cursor: pointer;
 		transition: opacity 200ms;
 
 		&::before {
