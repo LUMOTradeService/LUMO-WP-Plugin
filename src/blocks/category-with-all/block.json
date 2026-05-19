@@ -6,6 +6,12 @@
 	"title": "Category with all",
 	"category": "theme",
 	"icon": "archive",
+	"attributes": {
+    	"onlyRoot": {
+        	"type": "boolean",
+        	"default": true
+    	}
+	},
 	"description": "Displays list of categories with all button that redirects back to blog front page.",
 	"example": {},
 	"supports": {

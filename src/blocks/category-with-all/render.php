@@ -10,7 +10,18 @@
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
  */
 
-$categories = get_categories( array( 'hide_empty' => true ) );
+$only_root = isset( $attributes['onlyRoot'] ) ? $attributes['onlyRoot'] : false;
+
+$args = array(
+    'taxonomy'   => 'category',
+    'hide_empty' => true,
+);
+
+if ( $only_root ) {
+    $args['parent'] = 0;
+}
+
+$categories = get_categories( $args );
 $current_cat_id = is_category() ? get_queried_object_id() : 0;
 $all_url = get_post_type_archive_link( 'post' ) ?: home_url('/');
 $is_all_active = ( is_home() || is_front_page() ) && !is_category();
