@@ -11,11 +11,11 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 
 import { useSelect } from '@wordpress/data';
 
-import { Spinner } from '@wordpress/components';
+import { Spinner, PanelBody, ToggleControl } from '@wordpress/components';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -33,45 +33,56 @@ import './editor.scss';
  *
  * @return {Element} Element to render.
  */
-export default function Edit() {
-	const blockProps = useBlockProps();
+export default function Edit({ attributes, setAttributes }) {
+    const blockProps = useBlockProps();
+    const { onlyRoot } = attributes;
 
-    const { categories, isResolving } = useSelect( ( select ) => {
+    const { categories, isResolving } = useSelect((select) => {
         const query = {
             per_page: -1,
             hide_empty: true,
+            ...(onlyRoot ? { parent: 0 } : {})
         };
-        
-        // Používáme novější selektor isResolving pro čistší kód
+
         return {
-            categories: select( 'core' ).getEntityRecords( 'taxonomy', 'category', query ),
-            isResolving: select( 'core' ).isResolving( 'getEntityRecords', [ 'taxonomy', 'category', query ] ),
+            categories: select('core').getEntityRecords('taxonomy', 'category', query),
+            isResolving: select('core').isResolving('getEntityRecords', ['taxonomy', 'category', query]),
         };
-    }, [] );
+    }, [onlyRoot]);
 
-	const allCategories = categories || [];
+    const allCategories = categories || [];
 
-	return (
-		<div { ...blockProps }>
-            { isResolving ? (
+    return (
+        <div {...blockProps}>
+            <InspectorControls>
+                <PanelBody title="Nastavení kategorií">
+                    <ToggleControl
+                        label="Zobrazit pouze hlavní kategorie"
+                        checked={onlyRoot}
+                        onChange={(value) => setAttributes({ onlyRoot: value })}
+                    />
+                </PanelBody>
+            </InspectorControls>
+
+            {isResolving ? (
                 <Spinner />
             ) : (
                 <ul className="wp-block-categories-list wp-block-categories">
                     <li className="cat-item cat-item-all">
-                        <a href="#">{ __( 'All', 'lumo-wp-plugin' ) }</a>
+                        <a href="#">{__('All', 'lumo-wp-plugin')}</a>
                     </li>
-                    
-                    { allCategories.map( ( category ) => (
-                        <li key={ category.id } className={ `cat-item cat-item-${ category.id }` }>
-                            <a href="#">{ category.name }</a>
-                        </li>
-                    ) ) }
 
-                    { ! isResolving && allCategories.length === 0 && (
-                        <li>{ __( 'No categories found.', 'lumo-wp-plugin' ) }</li>
-                    ) }
+                    {allCategories.map((category) => (
+                        <li key={category.id} className={`cat-item cat-item-${category.id}`}>
+                            <a href="#">{category.name}</a>
+                        </li>
+                    ))}
+
+                    {!isResolving && allCategories.length === 0 && (
+                        <li>{__('No categories found.', 'lumo-wp-plugin')}</li>
+                    )}
                 </ul>
-            ) }
+            )}
         </div>
-	);
+    );
 }
