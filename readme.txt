@@ -1,4 +1,10 @@
-# lUMO WP Plugin
+=== lUMO WP Plugin ===
+Contributors:      LUMO trade service
+Tags:              block, pattern
+Tested up to:      6.8
+Stable tag:        1.0.0
+License:           GPL-2.0-or-later
+License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
 Custom block and pattern used in lumo trade service websites.
 
