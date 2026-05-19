@@ -55,7 +55,3 @@ The plugin registers block metadata from `build/blocks` using the block type reg
 ## License
 
 This plugin is released under the GPL-2.0-or-later license. See the `LICENSE` file for details.
-
-## Author
-
-LUMO trade service — https://lumopos.com/
