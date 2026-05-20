@@ -2,6 +2,8 @@
 
 Collection of gutenberg blocks and patterns.
 
+![Showcase of plugins gutenberg blocks](https://github.com/LUMOTradeService/LUMO-WP-Plugin/blob/main/lumo-wp-plugin.png)
+
 ## Included Blocks & Patterns
 
 - Tabs (`tabs`): Accessible, keyboard-navigable tab container used to group related content into tabbed panels. Works together with one or more `tab-item` blocks.
